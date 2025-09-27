@@ -96,7 +96,7 @@ class KolamVisualizer:
         if save_path:
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
         
-        plt.show()
+    # plt.show() removed for server compatibility
     
     def _add_analysis_overlay(self, ax, pattern: np.ndarray):
         """Add analysis overlay to the plot."""
@@ -166,7 +166,7 @@ class KolamVisualizer:
         if save_path:
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
         
-        plt.show()
+    # plt.show() removed for server compatibility
     
     def plot_3d_pattern(self, pattern: np.ndarray, title: str = "3D Kolam Pattern",
                        save_path: str = None):
@@ -202,7 +202,7 @@ class KolamVisualizer:
         if save_path:
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
         
-        plt.show()
+    # plt.show() removed for server compatibility
     
     def create_animation(self, patterns: List[np.ndarray], title: str = "Kolam Animation",
                         save_path: str = None, interval: int = 500):
@@ -235,7 +235,7 @@ class KolamVisualizer:
         if save_path:
             anim.save(save_path, writer='pillow', fps=2)
         
-        plt.show()
+    # plt.show() removed for server compatibility
         return anim
     
     def plot_analysis_heatmap(self, analysis: Dict[str, Any], save_path: str = None):
@@ -292,7 +292,7 @@ class KolamVisualizer:
         if save_path:
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
         
-        plt.show()
+    # plt.show() removed for server compatibility
     
     def plot_interactive_3d(self, pattern: np.ndarray, title: str = "Interactive 3D Kolam"):
         """
@@ -451,7 +451,7 @@ class KolamVisualizer:
         if save_path:
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
         
-        plt.show()
+    # plt.show() removed for server compatibility
     
     def create_symmetry_visualization(self, pattern: np.ndarray, save_path: str = None):
         """
@@ -513,7 +513,7 @@ class KolamVisualizer:
         if save_path:
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
         
-        plt.show()
+    # plt.show() removed for server compatibility
 
 
 def main():
