@@ -1,0 +1,349 @@
+{% extends "base.html" %}
+
+{% block title %}Kolam Scanner - Home{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="display-4 mb-3">
+        <i class="fas fa-dharmachakra text-primary"></i>
+        Kolam Scanner
+    </h1>
+    <p class="lead text-muted">
+        Capture or upload Kolam designs to analyze their mathematical principles and design patterns
+    </p>
+</div>
+
+<!-- Features Section -->
+<div class="row mb-5">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-camera feature-icon"></i>
+                <h5 class="card-title">Camera Capture</h5>
+                <p class="card-text">
+                    Use your phone's camera to capture Kolam designs in real-time and analyze them instantly.
+                </p>
+                <a href="/scan" class="btn btn-primary">
+                    <i class="fas fa-camera"></i> Start Scanning
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-upload feature-icon"></i>
+                <h5 class="card-title">Image Upload</h5>
+                <p class="card-text">
+                    Upload existing Kolam images from your device to analyze their mathematical properties.
+                </p>
+                <button class="btn btn-secondary" onclick="showUploadSection()">
+                    <i class="fas fa-upload"></i> Upload Image
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-chart-line feature-icon"></i>
+                <h5 class="card-title">Analysis & Insights</h5>
+                <p class="card-text">
+                    Get detailed analysis of symmetry, fractals, topology, and mathematical patterns in Kolam designs.
+                </p>
+                <button class="btn btn-primary" onclick="showAnalysisInfo()">
+                    <i class="fas fa-info-circle"></i> Learn More
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Upload Section -->
+<div id="uploadSection" class="row mb-5" style="display: none;">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="fas fa-upload"></i> Upload Kolam Image</h4>
+            </div>
+            <div class="card-body">
+                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                    <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                    <h5>Click to upload or drag and drop</h5>
+                    <p class="text-muted">Supported formats: JPG, PNG, GIF (Max 16MB)</p>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="loading">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Analyzing...</span>
+                    </div>
+                    <p class="mt-2">Analyzing your Kolam image...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Analysis Info Section -->
+<div id="analysisInfo" class="row mb-5" style="display: none;">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="fas fa-microscope"></i> Analysis Features</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="analysis-metric">
+                            <h6><i class="fas fa-sync-alt text-primary"></i> Symmetry Analysis</h6>
+                            <p class="mb-0">Detects radial, bilateral, and rotational symmetry patterns</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="analysis-metric">
+                            <h6><i class="fas fa-project-diagram text-primary"></i> Fractal Properties</h6>
+                            <p class="mb-0">Measures fractal dimension and self-similarity</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="analysis-metric">
+                            <h6><i class="fas fa-circle text-primary"></i> Topology Analysis</h6>
+                            <p class="mb-0">Analyzes connected components, holes, and loops</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="analysis-metric">
+                            <h6><i class="fas fa-tags text-primary"></i> Pattern Classification</h6>
+                            <p class="mb-0">Automatically categorizes pattern types and complexity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Results Section -->
+<div class="results-section">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-chart-bar"></i> Analysis Results</h4>
+                </div>
+                <div class="card-body">
+                    <div id="resultsContent">
+                        <!-- Results will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // File upload handling
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            uploadAndAnalyze(file);
+        }
+    });
+
+    // Drag and drop functionality
+    const uploadArea = document.querySelector('.upload-area');
+    
+    uploadArea.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+    });
+    
+    uploadArea.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+    });
+    
+    uploadArea.addEventListener('drop', function(e) {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            uploadAndAnalyze(files[0]);
+        }
+    });
+
+    function showUploadSection() {
+        document.getElementById('uploadSection').style.display = 'block';
+        document.getElementById('analysisInfo').style.display = 'none';
+        hideResults();
+    }
+
+    function showAnalysisInfo() {
+        document.getElementById('analysisInfo').style.display = 'block';
+        document.getElementById('uploadSection').style.display = 'none';
+        hideResults();
+    }
+
+    function uploadAndAnalyze(file) {
+        // Validate file type
+        if (!file.type.startsWith('image/')) {
+            showError('Please select an image file');
+            return;
+        }
+
+        // Validate file size (16MB)
+        if (file.size > 16 * 1024 * 1024) {
+            showError('File size must be less than 16MB');
+            return;
+        }
+
+        showLoading();
+        hideResults();
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            hideLoading();
+            if (data.error) {
+                showError(data.error);
+            } else {
+                displayResults(data);
+            }
+        })
+        .catch(error => {
+            hideLoading();
+            showError('Failed to analyze image: ' + error.message);
+        });
+    }
+
+    function displayResults(analysis) {
+        const resultsContent = document.getElementById('resultsContent');
+        
+        // Create results HTML
+        let html = `
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-image"></i> Original Image</h5>
+                    <img src="/image/${analysis.session_id}/original" class="pattern-image" alt="Original Kolam">
+                </div>
+                <div class="col-md-6">
+                    <h5><i class="fas fa-chart-heatmap"></i> Analysis Overview</h5>
+                    <img src="/image/${analysis.session_id}/analysis" class="pattern-image" alt="Analysis">
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="analysis-metric">
+                        <h6><i class="fas fa-tag"></i> Pattern Type</h6>
+                        <div class="metric-value" style="color: ${getPatternTypeColor(analysis.classification.primary_type)}">
+                            ${analysis.classification.primary_type.toUpperCase()}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="analysis-metric">
+                        <h6><i class="fas fa-layer-group"></i> Complexity</h6>
+                        <div class="metric-value">
+                            ${analysis.classification.complexity.toUpperCase()}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="analysis-metric">
+                        <h6><i class="fas fa-calculator"></i> Fractal Dimension</h6>
+                        <div class="metric-value">
+                            ${formatNumber(analysis.fractal_analysis.box_dimension)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <h6><i class="fas fa-sync-alt"></i> Symmetry Analysis</h6>
+                    <div class="analysis-metric">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="metric-label">Radial</div>
+                                <div class="metric-value">${analysis.symmetry_analysis.radial_symmetry.is_radial ? 'Yes' : 'No'}</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="metric-label">Bilateral</div>
+                                <div class="metric-value">${analysis.symmetry_analysis.bilateral_symmetry.is_bilateral ? 'Yes' : 'No'}</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="metric-label">Rotational</div>
+                                <div class="metric-value">${analysis.symmetry_analysis.rotational_symmetry.is_rotational ? 'Yes' : 'No'}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h6><i class="fas fa-project-diagram"></i> Topology</h6>
+                    <div class="analysis-metric">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="metric-label">Components</div>
+                                <div class="metric-value">${analysis.topology_analysis.total_components}</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="metric-label">Holes</div>
+                                <div class="metric-value">${analysis.topology_analysis.total_holes}</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="metric-label">Loops</div>
+                                <div class="metric-value">${analysis.topology_analysis.total_loops}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <h6><i class="fas fa-eye"></i> Symmetry Visualization</h6>
+                    <img src="/image/${analysis.session_id}/symmetry" class="pattern-image" alt="Symmetry Analysis">
+                </div>
+                <div class="col-md-6">
+                    <h6><i class="fas fa-project-diagram"></i> Fractal Analysis</h6>
+                    <img src="/image/${analysis.session_id}/fractal" class="pattern-image" alt="Fractal Analysis">
+                </div>
+            </div>
+            
+            <div class="row mt-3">
+                <div class="col-12">
+                    <h6><i class="fas fa-cube"></i> 3D Visualization</h6>
+                    <img src="/image/${analysis.session_id}/3d" class="pattern-image" alt="3D Visualization">
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h6><i class="fas fa-list"></i> Mathematical Properties</h6>
+                    <div class="d-flex flex-wrap">
+                        ${analysis.classification.mathematical_properties.map(prop => 
+                            `<span class="badge bg-primary me-2 mb-2">${prop.replace('_', ' ').toUpperCase()}</span>`
+                        ).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        resultsContent.innerHTML = html;
+        showResults();
+    }
+</script>
+{% endblock %}

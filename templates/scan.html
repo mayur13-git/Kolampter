@@ -1,0 +1,394 @@
+{% extends "base.html" %}
+
+{% block title %}Kolam Scanner - Camera Scan{% endblock %}
+
+{% block content %}
+<div class="text-center mb-4">
+    <h1 class="display-5 mb-3">
+        <i class="fas fa-camera text-primary"></i>
+        Camera Scanner
+    </h1>
+    <p class="lead text-muted">
+        Capture Kolam designs using your device's camera for instant analysis
+    </p>
+</div>
+
+<!-- Camera Section -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="fas fa-video"></i> Camera Capture</h4>
+            </div>
+            <div class="card-body">
+                <div class="camera-container">
+                    <video id="video" autoplay playsinline></video>
+                    <canvas id="canvas" style="display: none;"></canvas>
+                </div>
+                
+                <div class="camera-controls">
+                    <button id="startCamera" class="btn btn-primary me-2">
+                        <i class="fas fa-play"></i> Start Camera
+                    </button>
+                    <button id="captureBtn" class="btn btn-secondary me-2" disabled>
+                        <i class="fas fa-camera"></i> Capture
+                    </button>
+                    <button id="stopCamera" class="btn btn-outline-secondary" disabled>
+                        <i class="fas fa-stop"></i> Stop Camera
+                    </button>
+                </div>
+                
+                <div class="loading">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Analyzing...</span>
+                    </div>
+                    <p class="mt-2">Analyzing captured Kolam image...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Instructions -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-info-circle"></i> Instructions</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="text-center">
+                            <i class="fas fa-hand-pointer fa-2x text-primary mb-2"></i>
+                            <h6>1. Start Camera</h6>
+                            <p class="small text-muted">Click "Start Camera" to activate your device's camera</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="text-center">
+                            <i class="fas fa-crosshairs fa-2x text-primary mb-2"></i>
+                            <h6>2. Position & Focus</h6>
+                            <p class="small text-muted">Point camera at the Kolam design and ensure good lighting</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="text-center">
+                            <i class="fas fa-camera fa-2x text-primary mb-2"></i>
+                            <h6>3. Capture & Analyze</h6>
+                            <p class="small text-muted">Click "Capture" to take photo and analyze the design</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tips for Better Results -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-lightbulb"></i> Tips for Better Results</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> Ensure good lighting</li>
+                            <li><i class="fas fa-check text-success"></i> Keep camera steady</li>
+                            <li><i class="fas fa-check text-success"></i> Fill the frame with the Kolam</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> Avoid shadows and glare</li>
+                            <li><i class="fas fa-check text-success"></i> Capture from directly above</li>
+                            <li><i class="fas fa-check text-success"></i> Ensure clear contrast</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Results Section -->
+<div class="results-section">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-chart-bar"></i> Analysis Results</h4>
+                </div>
+                <div class="card-body">
+                    <div id="resultsContent">
+                        <!-- Results will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let stream = null;
+    let video = document.getElementById('video');
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+    
+    const startBtn = document.getElementById('startCamera');
+    const captureBtn = document.getElementById('captureBtn');
+    const stopBtn = document.getElementById('stopCamera');
+
+    // Start camera
+    startBtn.addEventListener('click', async () => {
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({ 
+                video: { 
+                    facingMode: 'environment', // Use back camera on mobile
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 }
+                } 
+            });
+            
+            video.srcObject = stream;
+            video.play();
+            
+            startBtn.disabled = true;
+            captureBtn.disabled = false;
+            stopBtn.disabled = false;
+            
+            // Set canvas size to match video
+            video.addEventListener('loadedmetadata', () => {
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+            });
+            
+        } catch (error) {
+            console.error('Error accessing camera:', error);
+            showError('Unable to access camera. Please check permissions.');
+        }
+    });
+
+    // Stop camera
+    stopBtn.addEventListener('click', () => {
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+            stream = null;
+        }
+        
+        video.srcObject = null;
+        startBtn.disabled = false;
+        captureBtn.disabled = true;
+        stopBtn.disabled = true;
+    });
+
+    // Capture image
+    captureBtn.addEventListener('click', () => {
+        if (!video.videoWidth || !video.videoHeight) {
+            showError('Camera not ready. Please wait a moment.');
+            return;
+        }
+        
+        // Draw current video frame to canvas
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        
+        // Convert canvas to base64 image
+        const imageData = canvas.toDataURL('image/jpeg', 0.8);
+        
+        // Analyze the captured image
+        analyzeCapturedImage(imageData);
+    });
+
+    function analyzeCapturedImage(imageData) {
+        showLoading();
+        hideResults();
+
+        fetch('/capture', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ image: imageData })
+        })
+        .then(response => response.json())
+        .then(data => {
+            hideLoading();
+            if (data.error) {
+                showError(data.error);
+            } else {
+                displayResults(data);
+            }
+        })
+        .catch(error => {
+            hideLoading();
+            showError('Failed to analyze image: ' + error.message);
+        });
+    }
+
+    function displayResults(analysis) {
+        const resultsContent = document.getElementById('resultsContent');
+        
+        // Create results HTML
+        let html = `
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-image"></i> Captured Image</h5>
+                    <img src="/image/${analysis.session_id}/original" class="pattern-image" alt="Captured Kolam">
+                </div>
+                <div class="col-md-6">
+                    <h5><i class="fas fa-chart-heatmap"></i> Analysis Overview</h5>
+                    <img src="/image/${analysis.session_id}/analysis" class="pattern-image" alt="Analysis">
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <div class="analysis-metric">
+                        <h6><i class="fas fa-tag"></i> Pattern Type</h6>
+                        <div class="metric-value" style="color: ${getPatternTypeColor(analysis.classification.primary_type)}">
+                            ${analysis.classification.primary_type.toUpperCase()}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="analysis-metric">
+                        <h6><i class="fas fa-layer-group"></i> Complexity</h6>
+                        <div class="metric-value">
+                            ${analysis.classification.complexity.toUpperCase()}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="analysis-metric">
+                        <h6><i class="fas fa-calculator"></i> Fractal Dimension</h6>
+                        <div class="metric-value">
+                            ${formatNumber(analysis.fractal_analysis.box_dimension)}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="analysis-metric">
+                        <h6><i class="fas fa-project-diagram"></i> Self-Similarity</h6>
+                        <div class="metric-value">
+                            ${formatNumber(analysis.fractal_analysis.self_similarity)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <h6><i class="fas fa-sync-alt"></i> Symmetry Analysis</h6>
+                    <div class="analysis-metric">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="metric-label">Radial</div>
+                                <div class="metric-value">${analysis.symmetry_analysis.radial_symmetry.is_radial ? 'Yes' : 'No'}</div>
+                                <div class="metric-label">Score: ${formatNumber(analysis.symmetry_analysis.radial_symmetry.score)}</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="metric-label">Bilateral</div>
+                                <div class="metric-value">${analysis.symmetry_analysis.bilateral_symmetry.is_bilateral ? 'Yes' : 'No'}</div>
+                                <div class="metric-label">Score: ${formatNumber(analysis.symmetry_analysis.bilateral_symmetry.max_score)}</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="metric-label">Rotational</div>
+                                <div class="metric-value">${analysis.symmetry_analysis.rotational_symmetry.is_rotational ? 'Yes' : 'No'}</div>
+                                <div class="metric-label">Score: ${formatNumber(analysis.symmetry_analysis.rotational_symmetry.best_score)}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h6><i class="fas fa-project-diagram"></i> Topology</h6>
+                    <div class="analysis-metric">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="metric-label">Components</div>
+                                <div class="metric-value">${analysis.topology_analysis.total_components}</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="metric-label">Holes</div>
+                                <div class="metric-value">${analysis.topology_analysis.total_holes}</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="metric-label">Loops</div>
+                                <div class="metric-value">${analysis.topology_analysis.total_loops}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <h6><i class="fas fa-eye"></i> Symmetry Visualization</h6>
+                    <img src="/image/${analysis.session_id}/symmetry" class="pattern-image" alt="Symmetry Analysis">
+                </div>
+                <div class="col-md-6">
+                    <h6><i class="fas fa-project-diagram"></i> Fractal Analysis</h6>
+                    <img src="/image/${analysis.session_id}/fractal" class="pattern-image" alt="Fractal Analysis">
+                </div>
+            </div>
+            
+            <div class="row mt-3">
+                <div class="col-12">
+                    <h6><i class="fas fa-cube"></i> 3D Visualization</h6>
+                    <img src="/image/${analysis.session_id}/3d" class="pattern-image" alt="3D Visualization">
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h6><i class="fas fa-list"></i> Mathematical Properties</h6>
+                    <div class="d-flex flex-wrap">
+                        ${analysis.classification.mathematical_properties.map(prop => 
+                            `<span class="badge bg-primary me-2 mb-2">${prop.replace('_', ' ').toUpperCase()}</span>`
+                        ).join('')}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <button class="btn btn-primary me-2" onclick="captureAnother()">
+                        <i class="fas fa-camera"></i> Capture Another
+                    </button>
+                    <button class="btn btn-secondary" onclick="generateSimilar()">
+                        <i class="fas fa-magic"></i> Generate Similar Pattern
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        resultsContent.innerHTML = html;
+        showResults();
+    }
+
+    function captureAnother() {
+        hideResults();
+        // Reset camera if needed
+        if (!stream) {
+            startBtn.click();
+        }
+    }
+
+    function generateSimilar() {
+        // This would generate a similar pattern based on the analysis
+        // For now, just show a message
+        alert('Pattern generation feature coming soon!');
+    }
+
+    // Clean up when page is unloaded
+    window.addEventListener('beforeunload', () => {
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+        }
+    });
+</script>
+{% endblock %}
