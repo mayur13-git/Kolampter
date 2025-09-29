@@ -1,0 +1,940 @@
+{
+  "pattern_info": {
+    "shape": [
+      281,
+      500
+    ],
+    "dtype": "uint8",
+    "min_value": 0.0,
+    "max_value": 255.0,
+    "mean_value": 66.53049822064057
+  },
+  "symmetry_analysis": {
+    "radial_symmetry": {
+      "score": 1.0,
+      "center": [
+        140,
+        250
+      ],
+      "max_radius": 286,
+      "is_radial": true
+    },
+    "bilateral_symmetry": {
+      "horizontal": 0,
+      "vertical": 0.7266192170818505,
+      "diagonal": 0,
+      "max_score": 0.7266192170818505,
+      "is_bilateral": false
+    },
+    "rotational_symmetry": {
+      "scores": {
+        "90_degrees": 0.7039217081850534,
+        "120_degrees": 0.7187758007117437,
+        "180_degrees": 0.7157580071174378,
+        "270_degrees": 0.6369181494661922
+      },
+      "best_angle": "120_degrees",
+      "best_score": 0.7187758007117437,
+      "is_rotational": false
+    }
+  },
+  "fractal_analysis": {
+    "box_dimension": 1.6553301032802799,
+    "self_similarity": 0.6141592705167173,
+    "is_fractal": true,
+    "recursive_structure": {
+      "has_recursive_structure": 0.0
+    }
+  },
+  "topology_analysis": {
+    "total_components": 144,
+    "total_holes": 12,
+    "total_loops": 144,
+    "component_analysis": [
+      {
+        "area": 25441,
+        "holes": 1,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1064,
+        "holes": 1,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 21,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 7,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 117,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 42,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 4,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 7,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 648,
+        "holes": 1,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1241,
+        "holes": 1,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 54,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 6,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 4,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 27,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 14,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 706,
+        "holes": 1,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 5,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 5,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 5,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 9,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 4,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 43,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 220,
+        "holes": 1,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 54,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 4,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1090,
+        "holes": 1,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 502,
+        "holes": 1,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 7,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 119,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 24,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 215,
+        "holes": 1,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 139,
+        "holes": 1,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 5,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 38,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 4,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 19,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 245,
+        "holes": 1,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 31,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 12,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 8,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 93,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 27,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 29,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 64,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 7,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 9,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 8,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 4,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 9,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 10,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 7,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 4,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 114,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 36,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 29,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 2,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 34,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 11,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 3770,
+        "holes": 1,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 52,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      },
+      {
+        "area": 1,
+        "holes": 0,
+        "loops": 1,
+        "contours": 1
+      }
+    ],
+    "is_continuous": false,
+    "has_loops": true
+  },
+  "classification": {
+    "primary_type": "radial",
+    "secondary_types": [
+      "fractal"
+    ],
+    "complexity": "high",
+    "mathematical_properties": [
+      "radial_symmetry",
+      "closed_curves"
+    ]
+  },
+  "visualization_paths": {
+    "original": "results\\session_e88fbe9f_20250929_143813\\original.png",
+    "analysis": "results\\session_e88fbe9f_20250929_143813\\analysis.png",
+    "symmetry": "results\\session_e88fbe9f_20250929_143813\\symmetry.png",
+    "fractal": "results\\session_e88fbe9f_20250929_143813\\fractal.png",
+    "3d": "results\\session_e88fbe9f_20250929_143813\\3d_visualization.png"
+  }
+}

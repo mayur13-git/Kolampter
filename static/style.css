@@ -1,0 +1,201 @@
+/* =========================================================
+   Kolam Scanner - Custom Styles (Mobile-First Professional UI)
+   ========================================================= */
+
+/* General Reset & Base */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    color: #333;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color: #111;
+}
+p, .small, .lead {
+    color: #555;
+}
+
+/* Video & Camera */
+#video {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 12px;
+    object-fit: cover;
+    background: #000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Camera container */
+.camera-container {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Buttons (mobile-friendly) */
+.btn {
+    min-height: 48px;
+    min-width: 48px;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border: none;
+    color: #fff;
+}
+.btn-primary:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6b7280, #4b5563);
+    border: none;
+    color: #fff;
+}
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #4b5563, #374151);
+}
+
+.btn-outline-secondary {
+    border: 1.5px solid #9ca3af;
+    color: #374151;
+}
+.btn-outline-secondary:hover {
+    background: #f9fafb;
+    border-color: #6b7280;
+}
+
+/* Camera controls layout */
+.camera-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.camera-controls .btn {
+    flex: 1;
+    margin: 5px;
+}
+
+/* Upload area */
+.upload-area {
+    min-height: 200px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: border 0.3s ease, background 0.3s ease;
+}
+.upload-area:hover {
+    border-color: #2563eb;
+    background: #f3f4f6;
+}
+
+/* Pattern images */
+.pattern-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+/* Analysis metrics */
+.analysis-metric {
+    background: #f9fafb;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.analysis-metric h6 {
+    font-size: 0.9rem;
+    color: #374151;
+    margin-bottom: 6px;
+}
+.analysis-metric .metric-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111;
+}
+.analysis-metric .metric-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+/* Badges for properties */
+.badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 0.4em 0.6em;
+    margin: 3px;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
+}
+.card-header {
+    background: transparent;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #111;
+    border-bottom: 1px solid #e5e7eb;
+}
+.card-body {
+    font-size: 0.95rem;
+}
+
+/* Loading Spinner */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+    color: #2563eb;
+}
+
+/* Responsive: Mobile First */
+@media (max-width: 768px) {
+    .main-container {
+        margin: 8px;
+        padding: 15px;
+    }
+
+    h1.display-5 {
+        font-size: 1.6rem;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .card {
+        margin-bottom: 15px;
+    }
+
+    .analysis-metric {
+        padding: 10px;
+    }
+}
