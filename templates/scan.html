@@ -188,21 +188,29 @@
     });
 
     // Capture image
-    captureBtn.addEventListener('click', () => {
-        if (!video.videoWidth || !video.videoHeight) {
-            showError('Camera not ready. Please wait a moment.');
-            return;
-        }
-        
-        // Draw current video frame to canvas
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        
-        // Convert canvas to base64 image
-        const imageData = canvas.toDataURL('image/jpeg', 0.8);
-        
-        // Analyze the captured image
-        analyzeCapturedImage(imageData);
-    });
+// Capture image
+captureBtn.addEventListener('click', () => {
+    if (!video.videoWidth || !video.videoHeight) {
+        showError('Camera not ready. Please wait a moment.');
+        return;
+    }
+
+    // Draw current video frame to canvas
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    // Pause the video feed (freeze on last frame)
+    video.pause();
+
+    // Convert canvas to base64 image
+    const imageData = canvas.toDataURL('image/jpeg', 0.8);
+
+    // Analyze the captured image
+    analyzeCapturedImage(imageData);
+
+    // Show Resume button after capture
+    showResumeButton();
+});
+
 
     function analyzeCapturedImage(imageData) {
         showLoading();
@@ -390,5 +398,22 @@
             stream.getTracks().forEach(track => track.stop());
         }
     });
+    // Dynamically create Resume button
+function showResumeButton() {
+    let resumeBtn = document.getElementById('resumeCamera');
+    if (!resumeBtn) {
+        resumeBtn = document.createElement("button");
+        resumeBtn.id = "resumeCamera";
+        resumeBtn.className = "btn btn-success ms-2";
+        resumeBtn.innerHTML = '<i class="fas fa-redo"></i> Resume Camera';
+        document.querySelector(".camera-controls").appendChild(resumeBtn);
+
+        resumeBtn.addEventListener("click", () => {
+            video.play(); // Resume live feed
+            resumeBtn.remove(); // Hide Resume button again
+        });
+    }
+}
+
 </script>
 {% endblock %}
