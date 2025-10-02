@@ -14,10 +14,9 @@
     
     <style>
     body {
-    min-height: 100vh;
+      min-height: 100vh;
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden;
     
     /* Base animated gradient background */
     background: linear-gradient(270deg, #667eea, #764ba2, #6dd5ed, #2193b0);
@@ -26,6 +25,8 @@
 
     /* Allow blending with mouse highlight */
     position: relative;
+    overflow-x: hidden; /* Only hide horizontal scrollbar */
+    overflow-y: auto;   /* Keep vertical scrolling */
 }
 
 /* Gradient animation */
