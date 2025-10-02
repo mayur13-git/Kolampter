@@ -13,11 +13,49 @@
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
     
     <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    
+    /* Base animated gradient background */
+    background: linear-gradient(270deg, #667eea, #764ba2, #6dd5ed, #2193b0);
+    background-size: 800% 800%;
+    animation: gradientAnimation 15s ease infinite;
+
+    /* Allow blending with mouse highlight */
+    position: relative;
+}
+
+/* Gradient animation */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Spotlight overlay */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    background: radial-gradient(
+        circle 30px at var(--x, 50%) var(--y, 50%),
+        rgba(255, 255, 255, 0.5),
+        transparent 80%
+    );
+    mix-blend-mode: overlay;  /* Makes it blend nicely */
+}
+
         
         .navbar {
             background: rgba(255, 255, 255, 0.95) !important;
@@ -260,6 +298,11 @@
             };
             return colors[type] || '#667eea';
         }
+        document.addEventListener("mousemove", (e) => {
+            document.body.style.setProperty("--y", e.clientY + "px");
+            document.body.style.setProperty("--x", e.clientX + "px");
+});
+
     </script>
     
     {% block extra_js %}{% endblock %}
